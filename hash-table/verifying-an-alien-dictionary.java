@@ -1,0 +1,31 @@
+class Solution {
+    public boolean isAlienSorted(String[] words, String order) {
+        
+        HashMap<Character, Integer> orderMap = new HashMap<>();
+
+        for(int i=0;i<order.length();i++){
+            char s = order.charAt(i);
+            orderMap.put(s,i);
+        }
+        for(int i=0;i<words.length-1;i++){
+            for(int j=0;j<words[i].length();j++){
+                if(j>=words[i+1].length()){
+                    return false;
+                }
+                if(words[i].charAt(j) != words[i+1].charAt(j)){
+                    int currentchar=orderMap.get(words[i].charAt(j));
+                    int nextchar = orderMap.get(words[i+1].charAt(j));
+                    if(currentchar>nextchar){
+                        return false;
+                    
+                    }
+                    else {
+                        break;
+                    }
+                }
+                
+            }
+        }
+        return true;
+    }
+}
